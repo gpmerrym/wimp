@@ -21,9 +21,11 @@ public class Actor {
 	private Long activeSinceYear;
 	private Date birthDate;
 	
-	public Actor(Long id, String firstName, String lastName, Long activeSinceYear, Date birthDate) {
+	public Actor() {}
+	
+	public Actor(String firstName, String lastName, Long activeSinceYear, Date birthDate) {
 		super();
-		this.id = id;
+		//this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.activeSinceYear = activeSinceYear;
