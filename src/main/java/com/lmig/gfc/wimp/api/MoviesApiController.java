@@ -28,14 +28,13 @@ public class MoviesApiController {
 	
 	@GetMapping("")
 	public List<Movie> getAll(){
-		
-		
 		return movieRepo.findAll();
 	}
 	
 	@GetMapping("{id}")
 	public Movie getOne(@PathVariable Long id){
 		return movieRepo.findOne(id);
+		//for loop?
 		
 	}
 	

@@ -12,30 +12,34 @@ import javax.persistence.ManyToMany;
 
 @Entity
 public class Movie {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private List<Actor> actors;
-	
-	@Column(length = 300, nullable = false)
+
 	@ManyToMany
+	private List<Actor> actors;
+
+	@Column(length = 300, nullable = false)
 	private String title;
+
 	private Date releaseDate;
 	private Long budget;
+
 	@Column(length = 500, nullable = false)
 	private String distributor;
-	
-	public Movie() {}
-	
+
+	public Movie() {
+	}
+
 	public Movie(String title, Date releaseDate, Long budget, String distributor) {
 		super();
-		//this.id = id;
+		// this.id = id;
 		this.title = title;
 		this.releaseDate = releaseDate;
 		this.budget = budget;
 		this.distributor = distributor;
-		
+
 	}
 
 	public Long getId() {
@@ -85,7 +89,5 @@ public class Movie {
 	public void setActors(List<Actor> actors) {
 		this.actors = actors;
 	}
-
-	
 
 }

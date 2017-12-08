@@ -1,6 +1,7 @@
 package com.lmig.gfc.wimp.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,15 +18,19 @@ public class Actor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
 	@Column(length = 75, nullable = false)
 	private String firstName;
-	
-	@ManyToMany(mappedBy="title")
-	@JsonIgnore
+		
 	@Column(length = 75, nullable = false)
 	private String lastName;
+	
 	private Long activeSinceYear;
 	private Date birthDate;
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy="actors")
+	private List<Movie> movies;
 	
 	public Actor() {}
 	
@@ -67,6 +72,14 @@ public class Actor {
 	}
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
+	}
+
+	public List<Movie> getMovies() {
+		return movies;
+	}
+
+	public void setMovies(List<Movie> movies) {
+		this.movies = movies;
 	}
 
 }
