@@ -28,6 +28,8 @@ public class MoviesApiController {
 	
 	@GetMapping("")
 	public List<Movie> getAll(){
+		
+		
 		return movieRepo.findAll();
 	}
 	

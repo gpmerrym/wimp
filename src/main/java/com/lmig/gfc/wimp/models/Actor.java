@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Actor {
@@ -16,6 +19,9 @@ public class Actor {
 	private Long id;
 	@Column(length = 75, nullable = false)
 	private String firstName;
+	
+	@ManyToMany(mappedBy="title")
+	@JsonIgnore
 	@Column(length = 75, nullable = false)
 	private String lastName;
 	private Long activeSinceYear;
