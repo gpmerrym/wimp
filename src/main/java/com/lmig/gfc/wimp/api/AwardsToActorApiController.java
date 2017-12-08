@@ -1,5 +1,7 @@
 package com.lmig.gfc.wimp.api;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,34 +11,32 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lmig.gfc.wimp.models.Actor;
-import com.lmig.gfc.wimp.models.Movie;
+import com.lmig.gfc.wimp.models.Award;
 import com.lmig.gfc.wimp.repositories.ActorRepository;
-import com.lmig.gfc.wimp.repositories.MovieRepository;
+import com.lmig.gfc.wimp.repositories.AwardRepository;
 
 @RestController
-@RequestMapping("/api/movies/{movieId}/actors")
-
-public class MovieAndActorRelationshipsApiController {
-
+@RequestMapping("/api/actors/{actorId}/awards")
+public class AwardsToActorApiController {
+	
+	private AwardRepository awardRepo;
 	private ActorRepository actorRepo;
-	private MovieRepository movieRepo;
-
-	public MovieAndActorRelationshipsApiController(ActorRepository actorRepo, MovieRepository movieRepo) {
+	
+	public AwardsToActorApiController(AwardRepository awardRepo, ActorRepository actorRepo) {
 		this.actorRepo = actorRepo;
-		this.movieRepo = movieRepo;
+		this.awardRepo = awardRepo;
 	}
-
+	
 	@PostMapping("")
-	@ResponseStatus(code = HttpStatus.CREATED)
-	public Movie create(@PathVariable Long movieId, @RequestBody Long actorId) {
-		Movie movie = movieRepo.findOne(movieId);
+	@ResponseStatus(code= HttpStatus.CREATED)
+	public ActorView create(@PathVariable Long actorId, @RequestBody Award award) {
 		Actor actor = actorRepo.findOne(actorId);
-
-		if (!movie.getActors().contains(actor)) {
-			movie.getActors().add(actor);
-			movieRepo.save(movie);
-		}
-		return movie;
-
+		ActorView view = new ActorView(actor);
+		award.setActor(actor);
+		awardRepo.save(award);
+		//actor.getAwards().add(award);
+		return view;
+		 
 	}
+
 }

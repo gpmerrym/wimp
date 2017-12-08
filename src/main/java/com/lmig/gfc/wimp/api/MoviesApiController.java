@@ -19,44 +19,42 @@ import com.lmig.gfc.wimp.repositories.MovieRepository;
 @RestController
 @RequestMapping("/api/movies")
 public class MoviesApiController {
-	
+
 	private MovieRepository movieRepo;
-	
+
 	public MoviesApiController(MovieRepository movieRepo) {
 		this.movieRepo = movieRepo;
 	}
-	
+
 	@GetMapping("")
-	public List<Movie> getAll(){
+	public List<Movie> getAll() {
 		return movieRepo.findAll();
 	}
-	
+
 	@GetMapping("{id}")
-	public Movie getOne(@PathVariable Long id){
+	public Movie getOne(@PathVariable Long id) {
 		return movieRepo.findOne(id);
-		//for loop?
-		
+
 	}
-	
+
 	@PostMapping("")
-	@ResponseStatus(code= HttpStatus.CREATED)
+	@ResponseStatus(code = HttpStatus.CREATED)
 	public Movie create(@RequestBody Movie movie) {
 		return movieRepo.save(movie);
-		
+
 	}
-	
+
 	@PutMapping("{id}")
 	public Movie update(@RequestBody Movie movie, @PathVariable Long id) {
 		movie.setId(id);
-		return movieRepo.save(movie);		
+		return movieRepo.save(movie);
 	}
-	
+
 	@DeleteMapping("{id}")
 	public Movie delete(@PathVariable Long id) {
 		Movie movie = movieRepo.findOne(id);
 		movieRepo.delete(id);
-		return movie;		
+		return movie;
 	}
-	
 
 }
