@@ -34,9 +34,9 @@ public class AwardsToActorApiController {
 		ActorView view = new ActorView(actor);
 		award.setActor(actor);
 		awardRepo.save(award);
-		//actor.getAwards().add(award);
 		return view;
-		 
 	}
+	
+	
 
 }

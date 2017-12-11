@@ -39,8 +39,11 @@ public class ActorsApiController {
 
 	@GetMapping("{id}")
 	public ActorView getOne(@PathVariable Long id) {
-		// actorRepo.findOne(id)) add to Actor view
-		ActorView view = new ActorView(actorRepo.findOne(id));
+		Actor actor = actorRepo.findOne(id);
+		if(actor == null) {
+			return null;
+		}
+		ActorView view = new ActorView(actor);
 		return view;
 	}
 
