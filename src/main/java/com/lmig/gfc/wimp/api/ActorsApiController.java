@@ -44,6 +44,7 @@ public class ActorsApiController {
 			return null;
 		}
 		ActorView view = new ActorView(actor);
+		//ActorView view = new ActorView(actorRepo.findOne(id));
 		return view;
 	}
 

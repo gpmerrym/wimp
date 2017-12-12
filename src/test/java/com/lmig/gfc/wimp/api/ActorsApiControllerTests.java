@@ -59,7 +59,6 @@ public class ActorsApiControllerTests {
 	@Test
 	public void getOne_returns_list_of_actors_for_an_invalid_id() {
 		//Arrange
-		
 		when(repo.findOne(0L)).thenReturn(null);
 		
 		

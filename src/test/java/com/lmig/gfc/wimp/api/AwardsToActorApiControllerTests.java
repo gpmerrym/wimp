@@ -32,11 +32,9 @@ public class AwardsToActorApiControllerTests {
 		Actor actor = new Actor();
 		actor.setId(17L);
 		Award award = new Award();
-		
 		when(actorRepo.findOne(17L)).thenReturn(actor);
 				
 		//Act
-		
 		ActorView actual = controller.create(17L, award);
 		
 		//Assert
